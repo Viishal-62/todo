@@ -1,29 +1,29 @@
+import { createHomeStyles } from "@/assets/styles/home.style";
+import Headers from "@/components/Headers";
+import { api } from "@/convex/_generated/api";
 import useTheme from "@/hooks/useTheme";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useQuery } from "convex/react";
+import { LinearGradient } from "expo-linear-gradient";
+import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
+  const { colors } = useTheme();
 
-  const { toggleDarkMode } = useTheme();
+  const todos = useQuery(api.todos.getTodos);
+
+  console.log("todos", todos);
+
+  const homeStyles = createHomeStyles(colors);
   return (
-    <View style={styles.container}>
-      <Text style={styles.content}>We are creating todo list for testing.</Text>
-      <TouchableOpacity onPress={toggleDarkMode} >
-        <Text>Switch to dark mode </Text>
-      </TouchableOpacity>
-    </View>
+    <LinearGradient
+      colors={colors.gradients.background}
+      style={homeStyles.container}
+    >
+      <SafeAreaView style={homeStyles.safeArea}>
+        <Headers title="Todos" icon="home" progressText={todos?.length} />
+        <Text>Welcome to the Home Screen!</Text>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "yellow",
-  },
-
-  content: {
-    fontSize: 20,
-    color: "red",
-  },
-});
