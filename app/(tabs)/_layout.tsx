@@ -7,15 +7,25 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
+        headerShown: false,
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.textMuted,
         tabBarStyle: {
-          backgroundColor: colors.bg,
+          backgroundColor: colors.surface,
           borderTopWidth: 1,
           borderTopColor: colors.border,
-          height: 90,
-          paddingBottom: 30,
+          height: 88,
+          paddingBottom: 28,
           paddingTop: 10,
+          shadowColor: colors.shadow,
+          shadowOffset: { width: 0, height: -3 },
+          shadowOpacity: 0.08,
+          shadowRadius: 6,
+          elevation: 10,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: "600",
         },
       }}
     >
@@ -24,7 +34,7 @@ export default function TabsLayout() {
         options={{
           title: "Todos",
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="home" size={size} color={color} />
+            <FontAwesome name="check-square-o" size={size} color={color} />
           ),
         }}
       />
@@ -34,7 +44,7 @@ export default function TabsLayout() {
         options={{
           title: "Settings",
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="cog" size={size} color={color} />
+            <FontAwesome name="sliders" size={size} color={color} />
           ),
         }}
       />

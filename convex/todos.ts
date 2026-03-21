@@ -21,6 +21,17 @@ export const getTodos = query({
   },
 });
 
+export const getCompletedTodos = query({
+  args: {},
+  handler: async (ctx) => {
+    const todos = await ctx.db
+      .query("todos")
+      .withIndex("byCompleted", (q) => q.eq("completed", true))
+      .collect();
+    return todos;
+  },
+});
+
 export const toggleTodo = mutation({
   args: { id: v.id("todos") },
   handler: async (ctx, args) => {
