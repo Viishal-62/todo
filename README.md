@@ -80,7 +80,7 @@ todo/
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/todo.git
+https://github.com/Viishal-62/todo.git
 cd todo
 ```
 
